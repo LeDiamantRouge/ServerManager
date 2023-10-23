@@ -1,0 +1,6 @@
+name: ServerManager
+version: '${project.version}'
+main: fr.lediamantrouge.servermanager.BungeeMain
+
+commands:
+  lobby:

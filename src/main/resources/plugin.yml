@@ -1,0 +1,3 @@
+name: ServerManager
+version: '${project.version}'
+main: fr.lediamantrouge.servermanager.Main

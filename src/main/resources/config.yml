@@ -1,0 +1,7 @@
+# Plugin pour Infrastructure proposé par LeDiamantRouge (https://ldr.yt/)
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: "motdepasse"
+  db: 0
