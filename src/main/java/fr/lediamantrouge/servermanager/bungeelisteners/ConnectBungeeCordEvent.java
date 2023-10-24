@@ -31,7 +31,6 @@ public class ConnectBungeeCordEvent implements Listener {
             }
             int random = new Random().nextInt(lobbys.size());
             e.setTarget(lobbys.get(random));
-            e.getPlayer().sendMessage(new TextComponent("§7Vous avez été connecté à " + lobbys.get(random).getName()));
         }
     }
 
