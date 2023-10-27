@@ -3,7 +3,6 @@ package fr.lediamantrouge.servermanager.templatemanager;
 import fr.lediamantrouge.servermanager.BungeeMain;
 import fr.lediamantrouge.servermanager.CommonMain;
 import fr.lediamantrouge.servermanager.servermanager.Server;
-import lombok.Getter;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -17,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class YamlTemplateManager implements ITemplateManager {
+public class BungeeTemplateManager implements ITemplateManager {
 
     private final Path templatesConfigDir = Paths.get(CommonMain.getInstance().getTemplatesFile() + "/" + "CONFIG");
 
     private List<Template> templates;
 
-    public YamlTemplateManager() {
+    public BungeeTemplateManager() {
         templates = new ArrayList<>();
         reloadTemplates();
         updateTemplates();
@@ -42,6 +41,7 @@ public class YamlTemplateManager implements ITemplateManager {
         return null;
     }
 
+    @Override
     public int getTotalInTemplate(Template template) {
         int total = 0;
         for (Server server : CommonMain.getInstance().getServerManager().getServers()) {

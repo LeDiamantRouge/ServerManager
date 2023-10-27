@@ -6,11 +6,11 @@ import fr.lediamantrouge.servermanager.bungeelisteners.DisconnectServerEvent;
 import fr.lediamantrouge.servermanager.bungeecommand.InstanceCommand;
 import fr.lediamantrouge.servermanager.bungeecommand.LobbyCommand;
 import fr.lediamantrouge.servermanager.bungeelisteners.ConnectBungeeCordEvent;
-import fr.lediamantrouge.servermanager.bungeepubsub.RedisStartChannel;
-import fr.lediamantrouge.servermanager.bungeepubsub.RedisStopChannel;
+import fr.lediamantrouge.servermanager.bungeepubsub.RedisChannel;
 import fr.lediamantrouge.servermanager.manager.RedisCredentials;
 import fr.lediamantrouge.servermanager.manager.RedisManager;
 import fr.lediamantrouge.servermanager.servermanager.Server;
+import fr.lediamantrouge.servermanager.templatemanager.BungeeTemplateManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -39,6 +39,8 @@ public final class BungeeMain extends Plugin {
     @Override
     public void onEnable() {
         instance = this;
+        CommonMain.getInstance().setType("Bungee");
+        CommonMain.getInstance().setTemplateManager(new BungeeTemplateManager());
 
         System.out.println("Register commands...");
 
@@ -102,21 +104,12 @@ public final class BungeeMain extends Plugin {
         System.out.println("Servers registered!");
 
         getProxy().getScheduler().runAsync(this, () -> {
-            System.out.println("Starting the first pubsub...");
-            JedisPubSub startSub = new RedisStartChannel();
-            RedisManager.getInstance().getConnection().subscribe(startSub, "start");
+            System.out.println("Starting all pubsub...");
+            JedisPubSub sub = new RedisChannel();
+            RedisManager.getInstance().getConnection().subscribe(sub, "start", "stop", "created");
         });
 
-        System.out.println("Started the first pubsub!");
-
-        getProxy().getScheduler().runAsync(this, () -> {
-            System.out.println("Starting the second pubsub...");
-
-            JedisPubSub stopSub = new RedisStopChannel();
-            RedisManager.getInstance().getConnection().subscribe(stopSub, "stop");
-        });
-
-        System.out.println("Started the second pubsub!");
+        System.out.println("Started all pubsub!");
     }
 
     @Override

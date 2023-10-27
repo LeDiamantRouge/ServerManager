@@ -13,7 +13,7 @@ public class RedisMessagingManager {
         RedisManager.getInstance().getConnection().publish("stop", Bukkit.getMotd());
     }
 
-    public static void sendStopMessage(Server server) {
-        RedisManager.getInstance().getConnection().publish("stop", server.getName());
+    public static void sendCreatedServer(Server server) {
+        RedisManager.getInstance().getConnection().publish("created", server.getName());
     }
 }

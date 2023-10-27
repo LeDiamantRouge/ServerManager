@@ -2,6 +2,7 @@ package fr.lediamantrouge.servermanager.servercreator;
 
 import fr.lediamantrouge.servermanager.BungeeMain;
 import fr.lediamantrouge.servermanager.CommonMain;
+import fr.lediamantrouge.servermanager.manager.RedisMessagingManager;
 import fr.lediamantrouge.servermanager.servermanager.Server;
 import fr.lediamantrouge.servermanager.templatemanager.Template;
 import lombok.SneakyThrows;
@@ -51,6 +52,10 @@ public class ScreenServerCreator implements IServerCreator {
                 );
 
         CommonMain.getInstance().getServerManager().createServer(server);
+
+        if (CommonMain.getInstance().getType().equals("Bukkit")) {
+            RedisMessagingManager.sendCreatedServer(server);
+        }
 
         new Thread(() -> {
             try {

@@ -6,7 +6,7 @@ import fr.lediamantrouge.servermanager.servercreator.ScreenServerCreator;
 import fr.lediamantrouge.servermanager.servermanager.IServerManager;
 import fr.lediamantrouge.servermanager.servermanager.RedisServerManager;
 import fr.lediamantrouge.servermanager.templatemanager.ITemplateManager;
-import fr.lediamantrouge.servermanager.templatemanager.YamlTemplateManager;
+import fr.lediamantrouge.servermanager.templatemanager.BungeeTemplateManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,8 +28,11 @@ public class CommonMain {
     private static CommonMain instance;
     private IServerCreator serverCreator;
     private IServerManager serverManager;
+    @Setter
     private ITemplateManager templateManager;
     private JavaScheduler scheduler;
+    @Setter
+    private String type;
 
     @Setter
     private boolean autoStart;
@@ -39,7 +42,7 @@ public class CommonMain {
         autoStart = true;
         serverCreator = new ScreenServerCreator();
         serverManager = new RedisServerManager();
-        templateManager = new YamlTemplateManager();
+        templateManager = null;
         scheduler = new JavaScheduler();
     }
 

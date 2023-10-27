@@ -3,6 +3,7 @@ package fr.lediamantrouge.servermanager;
 import fr.lediamantrouge.servermanager.manager.RedisCredentials;
 import fr.lediamantrouge.servermanager.manager.RedisManager;
 import fr.lediamantrouge.servermanager.manager.RedisMessagingManager;
+import fr.lediamantrouge.servermanager.templatemanager.BukkitTemplateManager;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +17,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        CommonMain.getInstance().setType("Bukkit");
+        CommonMain.getInstance().setTemplateManager(new BukkitTemplateManager());
 
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
