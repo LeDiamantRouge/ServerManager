@@ -18,7 +18,6 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         CommonMain.getInstance().setType("Bukkit");
-        CommonMain.getInstance().setTemplateManager(new BukkitTemplateManager());
 
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
@@ -27,6 +26,7 @@ public final class Main extends JavaPlugin {
 
         RedisCredentials credentials = new RedisCredentials(configuration.getString("redis.host"), configuration.getInt("redis.port"), configuration.getString("redis.password"), configuration.getInt("redis.db"));
         RedisManager.getInstance().connectRedis(credentials);
+        CommonMain.getInstance().setTemplateManager(new BukkitTemplateManager());
 
         RedisMessagingManager.sendStartedMessage();
     }

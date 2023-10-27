@@ -40,7 +40,6 @@ public final class BungeeMain extends Plugin {
     public void onEnable() {
         instance = this;
         CommonMain.getInstance().setType("Bungee");
-        CommonMain.getInstance().setTemplateManager(new BungeeTemplateManager());
 
         System.out.println("Register commands...");
 
@@ -82,6 +81,7 @@ public final class BungeeMain extends Plugin {
 
         RedisCredentials credentials = new RedisCredentials(configuration.getString("redis.host"), configuration.getInt("redis.port"), configuration.getString("redis.password"), configuration.getInt("redis.db"));
         RedisManager.getInstance().connectRedis(credentials);
+        CommonMain.getInstance().setTemplateManager(new BungeeTemplateManager());
 
         System.out.println("Connected redis!");
 

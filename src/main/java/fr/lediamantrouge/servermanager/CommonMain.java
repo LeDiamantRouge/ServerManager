@@ -6,7 +6,6 @@ import fr.lediamantrouge.servermanager.servercreator.ScreenServerCreator;
 import fr.lediamantrouge.servermanager.servermanager.IServerManager;
 import fr.lediamantrouge.servermanager.servermanager.RedisServerManager;
 import fr.lediamantrouge.servermanager.templatemanager.ITemplateManager;
-import fr.lediamantrouge.servermanager.templatemanager.BungeeTemplateManager;
 import lombok.Getter;
 import lombok.Setter;
 
